@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    //servlet
+    implementation 'javax.servlet:jstl:1.2'
+    //Spring boot
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.4'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.0.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    //Sha256
+    implementation 'com.google.guava:guava:11.0.2'
+    //Postgres
+    implementation 'org.postgresql:postgresql:42.1.4'
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test:6.0.1'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
