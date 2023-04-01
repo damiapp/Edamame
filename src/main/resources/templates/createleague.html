@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Edamame - Dune League Helper </title>
+  <title>Edamame - Create Your League </title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
@@ -19,13 +19,39 @@
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
 <div th:replace="fragments/general.html :: navigation"></div>
-
-<div class="pimg1">
-  <div class="ptext">
-      <span class="border">
-        Edamame
-      </span>
+</br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center">Create Your League</h2>
+        </div>
+        <div class="card-body">
+          <form
+                  method="post"
+                  role="form"
+                  th:action="@{/createleague/save}"
+                  class="form-horizontal"
+          >
+            <div class="form-group mb-3">
+              <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="form-control"
+                      placeholder="Enter league name"
+              />
+            </div>
+            <div class="form-group mb-3">
+              <button type="submit" class="btn btn-primary" >Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
 </body>
 </html>

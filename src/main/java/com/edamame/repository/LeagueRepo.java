@@ -5,4 +5,5 @@ import com.edamame.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface LeagueRepo extends JpaRepository<League, Long> {
+    League findByInviteCode(String inviteCode);
 }

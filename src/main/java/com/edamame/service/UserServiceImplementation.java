@@ -39,12 +39,12 @@ public class UserServiceImplementation implements UserService{
 
     @Override
     public User findUserById(long id) {
-        return null;
+        return userRepository.findById(id).get();
     }
 
     @Override
     public User findUserByEmail(String email) {
-        return null;
+        return userRepository.findByEmail(email);
     }
 
     private Role checkRoleExist(){

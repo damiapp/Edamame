@@ -22,6 +22,10 @@ public class WebSecurity {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/registration/**").permitAll()
                 .antMatchers("/index").permitAll()
+                .antMatchers("/createleague").hasAnyRole("USER","ADMIN")
+                .antMatchers("/league/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/joinleague").authenticated()
+                .antMatchers("/yourleagues").authenticated()
                 .and()
                 .formLogin(
                         form -> form

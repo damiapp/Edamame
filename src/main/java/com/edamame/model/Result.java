@@ -23,6 +23,9 @@ public class Result {
     @OneToOne
     @JoinColumn(name = "idMatch")
     private Match match;
+    @OneToOne
+    @JoinColumn(name = "idHero")
+    private Hero hero;
     @Column
     private Integer placement;
     @Column

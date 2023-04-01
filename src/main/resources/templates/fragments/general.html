@@ -17,7 +17,7 @@
                 </button>
             </div>
             <div class="navbar-header navDiv">
-                <a class="navbar-brand" th:href="@{/index}">Kumquat</a>
+                <a class="navbar-brand" th:href="@{/index}">Edamame</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -31,6 +31,24 @@
                         <a class="nav-link active" th:href="@{/login}">
                             <i class="bi bi-person"></i>
                             Login
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link active" th:href="@{/createleague}">
+                            <i class="bi bi-patch-plus"></i>
+                            Create a League
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link active" th:href="@{/yourleagues}">
+                            <i class="bi bi-person-lines-fill"></i>
+                            Your Leagues
+                        </a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link active" th:href="@{/joinleague}">
+                            <i class="bi bi-chat-left-dots"></i>
+                            Join a League
                         </a>
                     </li>
                     <li sec:authorize="isAuthenticated()" class="nav-item">

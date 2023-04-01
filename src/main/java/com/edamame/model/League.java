@@ -23,7 +23,7 @@ public class League {
     private String name;
     @Column
     private Date startDate;
-    @Column
+    @Column(unique = true)
     private String inviteCode;
     @ManyToMany
     @JoinColumn(name="idUser")

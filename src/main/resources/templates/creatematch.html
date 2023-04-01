@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edamame - Dune League Helper </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet"  th:href="@{/css/style.css}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</head>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50">
+
+<div th:replace="fragments/general.html :: navigation"></div>
+
+<form style="margin:10px;" th:action="@{/match/save}" method="post" onsubmit="return finalCheck();">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <a class="btn btn-link" data-bs-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Red Player
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <select class="form-select form-select-lg " id="reduser" name = "reduser" onchange="onRedUserChange()">
+                        <option value="">--Please choose a User--</option>
+                        <option th:each="user:${league.users}" th:value="${user}" th:text="${user.name}">
+                        </option>
+                    </select>
+                    <br>
+                    <select class="form-select form-select-lg " id="redhero" name="redhero" onchange="onRedHeroChange()">
+                        <option value="">--Please choose a Hero--</option>
+                        <option th:each="hero:${heroes}" th:value="${hero}" th:text="${hero.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Green Player
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body">
+                    <select class="form-select form-select-lg " id="greenuser" name = "greenuser" onchange="onGreenUserChange()">
+                        <option value="">--Please choose a User--</option>
+                        <option th:each="user:${league.users}" th:value="${user}" th:text="${user.name}">
+                        </option>
+                    </select>
+                    <br>
+                    <select class="form-select form-select-lg " id="greenhero" name="greenhero" onchange="onGreenHeroChange()">
+                        <option value="">--Please choose a Hero--</option>
+                        <option th:each="hero:${heroes}" th:value="${hero}" th:text="${hero.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-bs-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Blue Player
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <select class="form-select form-select-lg " id="blueuser" name = "blueuser" onchange="onBlueUserChange()">
+                        <option value="">--Please choose a User--</option>
+                        <option th:each="user:${league.users}" th:value="${user}" th:text="${user.name}">
+                        </option>
+                    </select>
+                    <br>
+                    <select class="form-select form-select-lg " id="bluehero" name="bluehero" onchange="onBlueHeroChange()">
+                        <option value="">--Please choose a Hero--</option>
+                        <option th:each="hero:${heroes}" th:value="${hero}" th:text="${hero.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h5 class="mb-0">
+                    <a class="btn btn-link collapsed" data-bs-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Yellow Player
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body">
+                    <select class="form-select form-select-lg " id="yellowuser" name = "yellowuser" onchange="onYellowUserChange()">
+                        <option value="">--Please choose a User--</option>
+                        <option th:each="user:${league.users}" th:value="${user}" th:text="${user.name}">
+                        </option>
+                    </select>
+                    <br>
+                    <select class="form-select form-select-lg " id="yellowhero" name="yellowhero" onchange="onYellowHeroChange()">
+                        <option value="">--Please choose a Hero--</option>
+                        <option th:each="hero:${heroes}" th:value="${hero}" th:text="${hero.name}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="Create" class="btn btn-primary">
+</form>
+
+<script th:inline="javascript">
+    var reduser = document.getElementById("reduser");
+    var greenuser = document.getElementById("greenuser");
+    var blueuser = document.getElementById("blueuser");
+    var yellowuser = document.getElementById("yellowuser");
+
+    var redHero = document.getElementById("redhero");
+    var greenHero = document.getElementById("greenhero");
+    var blueHero = document.getElementById("bluehero");
+    var yellowHero = document.getElementById("yellowhero");
+
+    function onRedUserChange() {
+        if (greenuser.value != "" && (reduser.value == greenuser.value || reduser.value == blueuser.value || reduser.value == yellowuser.value)) {
+            reduser.selectedIndex = 0; // reset to default option
+            alert("You have already selected this user in another color.");
+        }
+        else if(reduser.value==""){
+            reduser.selectedIndex = 0;
+            alert("You have to choose a user");
+        }
+    }
+
+    function onGreenUserChange() {
+        if (reduser.value != "" && (greenuser.value == reduser.value || greenuser.value == blueuser.value || greenuser.value == yellowuser.value)) {
+            greenuser.selectedIndex = 0; // reset to default option
+            alert("You have already selected this user in another color.");
+        }
+        if(greenuser.value==""){
+            greenuser.selectedIndex = 0;
+            alert("You have to choose a user");
+        }
+    }
+
+    function onBlueUserChange() {
+        if (reduser.value != "" && (blueuser.value == reduser.value || blueuser.value == greenuser.value || blueuser.value == yellowuser.value)) {
+            blueuser.selectedIndex = 0; // reset to default option
+            alert("You have already selected this user in another color.");
+        }
+        else if(blueuser.value==""){
+            blueuser.selectedIndex = 0;
+            alert("You have to choose a user");
+        }
+    }
+
+    function onYellowUserChange() {
+        if (reduser.value != "" && (yellowuser.value == reduser.value || category4.value == greenuser.value || yellowuser.value == blueuser.value)) {
+            yellowuser.selectedIndex = 0; // reset to default option
+            alert("You have already selected this user in another color.");
+        }
+        else if(yellowuser.value==""){
+            yellowuser.selectedIndex = 0;
+            alert("You have to choose a user");
+        }
+    }
+
+    function onRedHeroChange() {
+        if (greenHero.value != "" && (redHero.value == greenHero.value || redHero.value == blueHero.value || redHero.value == yellowHero.value)) {
+            redHero.selectedIndex = 0; // reset to default option
+            alert("You have already selected this hero for another user.");
+        }
+        else if(redHero.value==""){
+            redHero.selectedIndex = 0;
+            alert("You have to choose a hero");
+        }
+    }
+
+    function onGreenHeroChange() {
+        if (redHero.value != "" && (greenHero.value == redHero.value || greenHero.value == blueHero.value || greenHero.value == yellowHero.value)) {
+            greenHero.selectedIndex = 0; // reset to default option
+            alert("You have already selected this hero for another user.");
+        }
+        else if(greenHero.value==""){
+            greenHero.selectedIndex = 0;
+            alert("You have to choose a hero");
+        }
+    }
+
+    function onBlueHeroChange() {
+        if (redHero.value != "" && (blueHero.value == redHero.value || blueHero.value == greenHero.value || blueHero.value == yellowHero.value)) {
+            blueHero.selectedIndex = 0; // reset to default option
+            alert("You have already selected this hero for another user.");
+        }
+        else if(blueHero.value==""){
+            blueHero.selectedIndex = 0;
+            alert("You have to choose a hero");
+        }
+    }
+
+    function onYellowHeroChange() {
+        if (redHero.value != "" && (yellowHero.value == redHero.value || yellowHero.value == greenHero.value || yellowHero.value == blueHero.value)) {
+            yellowHero.selectedIndex = 0; // reset to default option
+            alert("You have already selected this hero for another user.");
+        }
+        else if(yellowHero.value==""){
+            yellowHero.selectedIndex = 0;
+            alert("You have to choose a hero");
+        }
+    }
+
+    function finalCheck(){
+        if(reduser.value == "" || greenuser.value == "" || yellowuser.value == "" || blueuser.value == "" ||
+            redHero.value == "" || greenHero.value == "" || yellowHero.value == "" || blueHero.value == ""){
+            alert("You must fill all the boxes!");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

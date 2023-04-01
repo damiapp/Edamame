@@ -1,0 +1,15 @@
+<div class="row" th:fragment="leagueslist" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <div th:each="league:${leagues}" class="col-sm-4">
+    <div class="card mb-3 col-sm-6" style="width: 18rem;">
+      <div class="card-body">
+        <a th:href="@{/league(invCode=${league.inviteCode})}" >
+          <h4>
+            <p th:text="${league.name}"></p>
+          </h4>
+        </a>
+        <p>Invite Code: <span th:text="${league.inviteCode}" style="font-family: Consolas" ></span> </p>
+        <p class="card-text"><small class="text-muted"> <span th:text="${league.startDate}" ></span></small></p>
+      </div>
+    </div>
+  </div>
+</div>
